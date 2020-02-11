@@ -24,6 +24,7 @@ uncomment the following line to initialize the datbase
 # Handle GET requests for all available movies.
 @app.route('/movies')
 @cross_origin()
+@requires_auth('view:movies')
 def get_all_movies():
     movies = Movie.query.all()
     try:
@@ -62,7 +63,7 @@ def post_movie(jwt):
     try:
         movies = [movie.format() for movie in movies]
 
-       return jsonify({
+        return jsonify({
             'success': True,
             'movies': movies
         }), 200
@@ -100,7 +101,7 @@ def patch_movie(jwt, id):
     try:
         movies = [movie.format() for movie in movies]
 
-       return jsonify({
+        return jsonify({
             'success': True,
             'movies': movies
         }), 200
@@ -127,9 +128,128 @@ def delete_movie(jwt, id):
     try:
         movies = [movie.format() for movie in movies]
 
-       return jsonify({
+        return jsonify({
             'success': True,
             'movies': movies
+        }), 200
+    except Exception:
+        abort(500)
+
+# ACTOR ROUTES
+
+# Handle GET requests for all available actors.
+@app.route('/actors')
+@cross_origin()
+@requires_auth('view:actors')
+def get_all_actors():
+    actors = Actor.query.all()
+    try:
+        actor = [actor.format() for actor in actors]
+
+        return jsonify({
+            'success': True,
+            'actors': actor
+        }), 200
+    except Exception:
+        abort(500)
+
+# Handle endpoint to POST a new actor
+@app.route('/actor', methods=['POST'])
+@cross_origin()
+@requires_auth('post:actors')
+def post_actor(jwt):
+    # Declare and empty data dictionary to hold all retrieved variables
+    data = request.get_json()
+
+    # set actor variable equal to corresponding model class,
+    # ready for adding to the session
+    actor = data.get('actor')
+
+    actor = Actor(
+        name=data.get('name'),
+        age=data.get('age'),
+        gender=data.get('gender')
+    )
+
+    try:
+        actor.insert()
+    except Exception:
+        abort(400)
+
+    actors = Actor.query.all()
+    try:
+        actors = [actor.format() for actor in actors]
+
+        return jsonify({
+            'success': True,
+            'actors': actors
+        }), 200
+    except Exception:
+        abort(500)
+
+
+# Handle endpoint to PATCH an existing actor
+@app.route('/actors/<int:id>', methods=['PATCH'])
+@cross_origin()
+@requires_auth('patch:actors')
+def patch_actor(jwt, id):
+    actor = Actor.query.filter(Actor.id == id).one_or_none()
+
+    if actor is None:
+        abort(404)
+
+    # Declare and empty data dictionary to hold all retrieved variables
+    data = request.get_json()
+
+    # set actor variable equal to corresponding model class,
+    # ready for adding to the session
+
+    name = data.get('name')
+    age = data.get('age')
+    gender = data.get('gender')
+
+    try:
+        actor.name = name
+        actor.age = age
+        actor.gender = gender
+        actor.update()
+    except Exception:
+        abort(422)
+
+    actors = Actor.query.all()
+    try:
+        actors = [actor.format() for actor in actors]
+
+        return jsonify({
+            'success': True,
+            'actors': actors
+        }), 200
+    except Exception:
+        abort(500)
+
+
+# Handle endpoint to DELETE an existing actor
+@app.route('/actors/<int:id>', methods=['DELETE'])
+@cross_origin()
+@requires_auth('delete:actors')
+def delete_actor(jwt, id):
+    actor = Actor.query.filter(Actor.id == id).one_or_none()
+
+    if actor is None:
+        abort(404)
+
+    try:
+        actor.delete()
+    except Exception:
+        abort(422)
+
+    actors = Actor.query.all()
+    try:
+        actors = [actor.format() for actor in actors]
+
+        return jsonify({
+            'success': True,
+            'actors': actors
         }), 200
     except Exception:
         abort(500)
