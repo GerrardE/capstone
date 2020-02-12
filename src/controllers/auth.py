@@ -6,7 +6,7 @@ from urllib.request import urlopen
 
 
 #   TODO
-AUTH0_DOMAIN = 'capstone.auth0.com'
+AUTH0_DOMAIN = 'capstone-app.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'auth'
 

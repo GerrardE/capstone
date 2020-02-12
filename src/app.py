@@ -24,7 +24,7 @@ uncomment the following line to initialize the datbase
 # Handle GET requests for all available movies.
 @app.route('/movies')
 @cross_origin()
-@requires_auth('view:movies')
+# @requires_auth('view:movies')
 def get_all_movies():
     movies = Movie.query.all()
     try:
@@ -40,8 +40,8 @@ def get_all_movies():
 # Handle endpoint to POST a new movie
 @app.route('/movies', methods=['POST'])
 @cross_origin()
-@requires_auth('post:movies')
-def post_movie(jwt):
+# @requires_auth('post:movies')
+def post_movie():
     # Declare and empty data dictionary to hold all retrieved variables
     data = request.get_json()
 
@@ -74,8 +74,8 @@ def post_movie(jwt):
 # Handle endpoint to PATCH an existing movie
 @app.route('/movies/<int:id>', methods=['PATCH'])
 @cross_origin()
-@requires_auth('patch:movies')
-def patch_movie(jwt, id):
+# @requires_auth('patch:movies')
+def patch_movie(id):
     movie = Movie.query.filter(Movie.id == id).one_or_none()
 
     if movie is None:
@@ -112,8 +112,8 @@ def patch_movie(jwt, id):
 # Handle endpoint to DELETE an existing movie
 @app.route('/movies/<int:id>', methods=['DELETE'])
 @cross_origin()
-@requires_auth('delete:movies')
-def delete_movie(jwt, id):
+# @requires_auth('delete:movies')
+def delete_movie(id):
     movie = Movie.query.filter(Movie.id == id).one_or_none()
 
     if movie is None:
@@ -140,7 +140,7 @@ def delete_movie(jwt, id):
 # Handle GET requests for all available actors.
 @app.route('/actors')
 @cross_origin()
-@requires_auth('view:actors')
+# @requires_auth('view:actors')
 def get_all_actors():
     actors = Actor.query.all()
     try:
@@ -154,10 +154,10 @@ def get_all_actors():
         abort(500)
 
 # Handle endpoint to POST a new actor
-@app.route('/actor', methods=['POST'])
+@app.route('/actors', methods=['POST'])
 @cross_origin()
-@requires_auth('post:actors')
-def post_actor(jwt):
+# @requires_auth('post:actors')
+def post_actor():
     # Declare and empty data dictionary to hold all retrieved variables
     data = request.get_json()
 
@@ -191,8 +191,8 @@ def post_actor(jwt):
 # Handle endpoint to PATCH an existing actor
 @app.route('/actors/<int:id>', methods=['PATCH'])
 @cross_origin()
-@requires_auth('patch:actors')
-def patch_actor(jwt, id):
+# @requires_auth('patch:actors')
+def patch_actor(id):
     actor = Actor.query.filter(Actor.id == id).one_or_none()
 
     if actor is None:
@@ -231,8 +231,8 @@ def patch_actor(jwt, id):
 # Handle endpoint to DELETE an existing actor
 @app.route('/actors/<int:id>', methods=['DELETE'])
 @cross_origin()
-@requires_auth('delete:actors')
-def delete_actor(jwt, id):
+# @requires_auth('delete:actors')
+def delete_actor(id):
     actor = Actor.query.filter(Actor.id == id).one_or_none()
 
     if actor is None:
