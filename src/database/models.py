@@ -5,7 +5,7 @@ import json
 
 database_name = "capstone"
 database_path = "postgres://{}/{}".format(
-    'gerrard:testpass@127.0.0.1:5432', database_name)
+    'postgres:1234@127.0.0.1:5432', database_name)
 
 db = SQLAlchemy()
 

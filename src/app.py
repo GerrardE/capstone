@@ -4,8 +4,8 @@ from sqlalchemy import exc
 import json
 from flask_cors import CORS, cross_origin
 
-from database.models import db_drop_and_create_all, setup_db, Movie, Actor
-from controllers.auth import AuthError, requires_auth
+from .database.models import db_drop_and_create_all, setup_db, Movie, Actor
+from .controllers.auth import AuthError, requires_auth
 
 app = Flask(__name__)
 setup_db(app)
@@ -22,11 +22,12 @@ uncomment the following line to initialize the datbase
 # MOVIE ROUTES
 
 # Handle GET requests for all available movies.
-@app.route('/movies')
+@app.route('/api/movies')
 @cross_origin()
-# @requires_auth('view:movies')
-def get_all_movies():
+@requires_auth('view:movies')
+def get_all_movies(jwt):
     movies = Movie.query.all()
+    print(movies)
     try:
         movies = [movie.format() for movie in movies]
 
@@ -38,10 +39,10 @@ def get_all_movies():
         abort(500)
 
 # Handle endpoint to POST a new movie
-@app.route('/movies', methods=['POST'])
+@app.route('/api/movies', methods=['POST'])
 @cross_origin()
-# @requires_auth('post:movies')
-def post_movie():
+@requires_auth('post:movies')
+def post_movie(jwt):
     # Declare and empty data dictionary to hold all retrieved variables
     data = request.get_json()
 
@@ -72,10 +73,10 @@ def post_movie():
 
 
 # Handle endpoint to PATCH an existing movie
-@app.route('/movies/<int:id>', methods=['PATCH'])
+@app.route('/api/movies/<int:id>', methods=['PATCH'])
 @cross_origin()
-# @requires_auth('patch:movies')
-def patch_movie(id):
+@requires_auth('patch:movies')
+def patch_movie(jwt, id):
     movie = Movie.query.filter(Movie.id == id).one_or_none()
 
     if movie is None:
@@ -110,10 +111,10 @@ def patch_movie(id):
 
 
 # Handle endpoint to DELETE an existing movie
-@app.route('/movies/<int:id>', methods=['DELETE'])
+@app.route('/api/movies/<int:id>', methods=['DELETE'])
 @cross_origin()
-# @requires_auth('delete:movies')
-def delete_movie(id):
+@requires_auth('delete:movies')
+def delete_movie(jwt, id):
     movie = Movie.query.filter(Movie.id == id).one_or_none()
 
     if movie is None:
@@ -138,10 +139,10 @@ def delete_movie(id):
 # ACTOR ROUTES
 
 # Handle GET requests for all available actors.
-@app.route('/actors')
+@app.route('/api/actors')
 @cross_origin()
-# @requires_auth('view:actors')
-def get_all_actors():
+@requires_auth('view:actors')
+def get_all_actors(jwt):
     actors = Actor.query.all()
     try:
         actor = [actor.format() for actor in actors]
@@ -154,10 +155,10 @@ def get_all_actors():
         abort(500)
 
 # Handle endpoint to POST a new actor
-@app.route('/actors', methods=['POST'])
+@app.route('/api/actors', methods=['POST'])
 @cross_origin()
-# @requires_auth('post:actors')
-def post_actor():
+@requires_auth('post:actors')
+def post_actor(jwt):
     # Declare and empty data dictionary to hold all retrieved variables
     data = request.get_json()
 
@@ -189,10 +190,10 @@ def post_actor():
 
 
 # Handle endpoint to PATCH an existing actor
-@app.route('/actors/<int:id>', methods=['PATCH'])
+@app.route('/api/actors/<int:id>', methods=['PATCH'])
 @cross_origin()
-# @requires_auth('patch:actors')
-def patch_actor(id):
+@requires_auth('patch:actors')
+def patch_actor(jwt, id):
     actor = Actor.query.filter(Actor.id == id).one_or_none()
 
     if actor is None:
@@ -229,10 +230,10 @@ def patch_actor(id):
 
 
 # Handle endpoint to DELETE an existing actor
-@app.route('/actors/<int:id>', methods=['DELETE'])
+@app.route('/api/actors/<int:id>', methods=['DELETE'])
 @cross_origin()
-# @requires_auth('delete:actors')
-def delete_actor(id):
+@requires_auth('delete:actors')
+def delete_actor(jwt, id):
     actor = Actor.query.filter(Actor.id == id).one_or_none()
 
     if actor is None:
