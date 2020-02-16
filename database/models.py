@@ -2,10 +2,11 @@ import os
 from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
+from dotenv import load_dotenv
 
-database_name = "capstone"
-database_path = "postgres://{}/{}".format(
-    'postgres:1892@127.0.0.1:5432', database_name)
+load_dotenv()
+
+database_path = os.getenv('DATABASE_URL')
 
 db = SQLAlchemy()
 
