@@ -3,7 +3,6 @@ from flask import Flask, request, jsonify, abort
 from sqlalchemy import exc
 import json
 from flask_cors import CORS, cross_origin
-
 from database.models import db_drop_and_create_all, setup_db, Movie, Actor
 from controllers.auth import AuthError, requires_auth
 
@@ -324,3 +323,9 @@ def create_app(test_config=None):
         }), 500
 
     return app
+
+
+app = create_app()
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)

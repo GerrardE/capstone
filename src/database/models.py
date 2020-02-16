@@ -5,7 +5,7 @@ import json
 
 database_name = "capstone"
 database_path = "postgres://{}/{}".format(
-    'postgres:1234@127.0.0.1:5432', database_name)
+    'postgres:1892@127.0.0.1:5432', database_name)
 
 db = SQLAlchemy()
 
@@ -40,7 +40,7 @@ def db_drop_and_create_all():
 
 class Movie(db.Model):
     __tablename__ = 'movies'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(db.Integer, primary_key=True)
     title = Column(String(80), unique=True)
     release_date = Column(String(180), nullable=False)
 
@@ -71,7 +71,7 @@ class Movie(db.Model):
 
 class Actor(db.Model):
     __tablename__ = 'actors'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(db.Integer, primary_key=True, autoincrement=True)
     name = Column(String(80), unique=True)
     age = Column(String(180), nullable=False)
     gender = Column(String(80), nullable=False)

@@ -1,0 +1,207 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.1
+-- Dumped by pg_dump version 12.1
+
+-- Started on 2020-02-16 07:06:28
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 205 (class 1259 OID 32998)
+-- Name: actors; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.actors (
+    id integer NOT NULL,
+    name character varying(80),
+    age character varying(180) NOT NULL,
+    gender character varying(80) NOT NULL
+);
+
+
+ALTER TABLE public.actors OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 32996)
+-- Name: actors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.actors_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.actors_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2838 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: actors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.actors_id_seq OWNED BY public.actors.id;
+
+
+--
+-- TOC entry 203 (class 1259 OID 32988)
+-- Name: movies; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.movies (
+    id integer NOT NULL,
+    title character varying(80),
+    release_date character varying(180) NOT NULL
+);
+
+
+ALTER TABLE public.movies OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 32986)
+-- Name: movies_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.movies_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.movies_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2839 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: movies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.movies_id_seq OWNED BY public.movies.id;
+
+
+--
+-- TOC entry 2694 (class 2604 OID 33001)
+-- Name: actors id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.actors ALTER COLUMN id SET DEFAULT nextval('public.actors_id_seq'::regclass);
+
+
+--
+-- TOC entry 2693 (class 2604 OID 32991)
+-- Name: movies id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.movies ALTER COLUMN id SET DEFAULT nextval('public.movies_id_seq'::regclass);
+
+
+--
+-- TOC entry 2832 (class 0 OID 32998)
+-- Dependencies: 205
+-- Data for Name: actors; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.actors (id, name, age, gender) FROM stdin;
+1	Philip Newman	16	male
+2	Boris John	17	male
+3	Jane Doe	34	female
+4	Shera Ghom	14	female
+\.
+
+
+--
+-- TOC entry 2830 (class 0 OID 32988)
+-- Dependencies: 203
+-- Data for Name: movies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.movies (id, title, release_date) FROM stdin;
+1	Tranformers	3-Dec-2170
+2	Rise of a Hero	1-Aug-2020
+3	Informer	1-Feb-2060
+4	Jail Breaker	5-Jan-2160
+\.
+
+
+--
+-- TOC entry 2840 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: actors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.actors_id_seq', 4, true);
+
+
+--
+-- TOC entry 2841 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: movies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.movies_id_seq', 4, true);
+
+
+--
+-- TOC entry 2700 (class 2606 OID 33005)
+-- Name: actors actors_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.actors
+    ADD CONSTRAINT actors_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 2702 (class 2606 OID 33003)
+-- Name: actors actors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.actors
+    ADD CONSTRAINT actors_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2696 (class 2606 OID 32993)
+-- Name: movies movies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.movies
+    ADD CONSTRAINT movies_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2698 (class 2606 OID 32995)
+-- Name: movies movies_title_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.movies
+    ADD CONSTRAINT movies_title_key UNIQUE (title);
+
+
+-- Completed on 2020-02-16 07:06:29
+
+--
+-- PostgreSQL database dump complete
+--
+
