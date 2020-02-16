@@ -1,0 +1,555 @@
+{
+	"info": {
+		"_postman_id": "58d343d1-7f25-47cc-a3ab-5f3dc2fd99ac",
+		"name": "Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Casting Assistant",
+			"item": [
+				{
+					"name": "Get all actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/actors",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/movies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9VWXpRVFJGUVRNM01FSXlSakJDTlRCQlJVVkZORFJFTnpZNU1rSXdPRGczT1RRM09UUXhOUSJ9.eyJpc3MiOiJodHRwczovL2NhcHN0b25lLWFwcC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU0MzA1NmY4ODYwYzgwZTg5ZGIwYzI5IiwiYXVkIjoiYXV0aCIsImlhdCI6MTU4MTc5MzQ4NSwiZXhwIjoxNTgxODc5ODg1LCJhenAiOiJ0cUZJbVRTWGZBZlN1MW1OcTlrcW5VdWhHckhLczFsciIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidmlldzphY3RvcnMiLCJ2aWV3Om1vdmllcyJdfQ.T2SbH3OLkkfB5Tn0Pf_-sFnNxkwv8eVbr7N6jRXfhjAXglkcr74L1ehrbz8pqxe5SGxh-nOAKqo5GZQDV7GDvVSO-O9rp3Mp57nhj1oe27DnwZIR0oPkFedp_L7EQxkFtEzJln9AFD5S_-cfqy99vXyFRXYBBxO47_f9o0qXapQx16I8Wnp6qdNHEuNIJ7YTtNXmQJGjPhYwwWeBeSNBPWRhzST0CGYNIl-4e2_H7XOgbtKvgJyZl95IYxItxsMFIAY2DjfztZFBIiUfHZY4JLGlAEXZBJ7PWOv5TYdai4pHeHfAqzeM_vsHrZ_xvHy6FYuyAHD7UGTzaeowHzJLHg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aca10c04-e2ea-4ace-864d-b3ec6c0be823",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7b2589a-a60a-4144-90e9-efc3ddc3dab8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Casting Director",
+			"item": [
+				{
+					"name": "Movies",
+					"item": [
+						{
+							"name": "Get all movies",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/movies",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"movies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit a movie",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"How to be rich\",\n\t\"release_date\": \"29-Jan-2021\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/movies/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"movies",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Actors",
+					"item": [
+						{
+							"name": "Get all actors",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/actors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"actors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add an actor",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Jae Joe\",\n\t\"age\": \"23\",\n\t\"gender\":\"female\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/actors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"actors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit an actor",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Jake Joe\",\n\t\"age\": \"27\",\n\t\"gender\":\"male\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/actors/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"actors",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an actor",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/actors/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"actors",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9VWXpRVFJGUVRNM01FSXlSakJDTlRCQlJVVkZORFJFTnpZNU1rSXdPRGczT1RRM09UUXhOUSJ9.eyJpc3MiOiJodHRwczovL2NhcHN0b25lLWFwcC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU0MzA1MmMwZDAxMjkwZTZlM2E1ZWIyIiwiYXVkIjoiYXV0aCIsImlhdCI6MTU4MTgzNzEwMCwiZXhwIjoxNTgxOTIzNTAwLCJhenAiOiJ0cUZJbVRTWGZBZlN1MW1OcTlrcW5VdWhHckhLczFsciIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyIsInBvc3Q6YWN0b3JzIiwidmlldzphY3RvcnMiLCJ2aWV3Om1vdmllcyJdfQ.R6b2QukuDnAj4Evo0kQ49WcoW4ZtAeymel2Mor3lN_faB0Eg3Tjf2ArhaERtzANnmyxTy9upE140aNFH0HeDD-pVtlwkVbOSX71aTGBu7z0dnDupPfeolD97z1kKzsLbSKYy3L0fUPshPtdtrb80Nxp3_5tT9p9DLK90I5M8OrVaBz9kEtXoEAawSTQh9eLct9V0re2gd0ssh2ABSV1kHFFG6SyGPsPj2rgYxGzzrx7EwFnzFxRZTo9poX12swuV-K0-7bHHV0-o5ca407HmjPeR7z96pxFVuIjhkYtyWPAEhgJzPu_aNBjpsdTG3io3I1CaW29fG83q8y_LVh2q2g",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "006a0aaf-c579-4385-8845-26791feb5035",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "47bf1f66-30f0-4a05-95bc-86093caa4938",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Executive Producer",
+			"item": [
+				{
+					"name": "Movies",
+					"item": [
+						{
+							"name": "Get all movies",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/movies",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"movies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a movie",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"release_date\": \"5-Jan-2160\",\n    \"title\": \"Jail Breakers\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/movies",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"movies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit a movie",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"How to be a man\",\n\t\"release_date\": \"29-Jan-2021\"\n}"
+								},
+								"url": {
+									"raw": "{{url}}/movies/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"movies",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a movie",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/movies/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"movies",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Actors",
+					"item": [
+						{
+							"name": "Get all actors",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/actors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"actors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add an actor",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n            \"age\": \"30\",\r\n            \"gender\": \"female\",\r\n            \"name\": \"Ibra Ma\"\r\n        }"
+								},
+								"url": {
+									"raw": "{{url}}/actors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"actors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit an actor",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n            \"age\": \"28\",\r\n            \"gender\": \"female\",\r\n            \"name\": \"Janet Joe\"\r\n        }"
+								},
+								"url": {
+									"raw": "{{url}}/actors/2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"actors",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an actor",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/actors/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"actors",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik9VWXpRVFJGUVRNM01FSXlSakJDTlRCQlJVVkZORFJFTnpZNU1rSXdPRGczT1RRM09UUXhOUSJ9.eyJpc3MiOiJodHRwczovL2NhcHN0b25lLWFwcC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWU0MzA1NmY4ODYwYzgwZTg5ZGIwYzI5IiwiYXVkIjoiYXV0aCIsImlhdCI6MTU4MTc5MzQ4NSwiZXhwIjoxNTgxODc5ODg1LCJhenAiOiJ0cUZJbVRTWGZBZlN1MW1OcTlrcW5VdWhHckhLczFsciIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIiwidmlldzphY3RvcnMiLCJ2aWV3Om1vdmllcyJdfQ.T2SbH3OLkkfB5Tn0Pf_-sFnNxkwv8eVbr7N6jRXfhjAXglkcr74L1ehrbz8pqxe5SGxh-nOAKqo5GZQDV7GDvVSO-O9rp3Mp57nhj1oe27DnwZIR0oPkFedp_L7EQxkFtEzJln9AFD5S_-cfqy99vXyFRXYBBxO47_f9o0qXapQx16I8Wnp6qdNHEuNIJ7YTtNXmQJGjPhYwwWeBeSNBPWRhzST0CGYNIl-4e2_H7XOgbtKvgJyZl95IYxItxsMFIAY2DjfztZFBIiUfHZY4JLGlAEXZBJ7PWOv5TYdai4pHeHfAqzeM_vsHrZ_xvHy6FYuyAHD7UGTzaeowHzJLHg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "21ef6811-1e6d-4494-8041-0f0e3f0a6892",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4fcaf658-e054-4009-833a-fed0c5ee3622",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "34c6ff02-c7de-408f-93a5-14fa7f77657c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ffbd03ed-12bc-4b6e-bb17-87f3f7bd7ef2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c25f9e11-5c9a-4813-8bcc-fef117455ac1",
+			"key": "url",
+			"value": "localhost:5000/api",
+			"type": "string"
+		},
+		{
+			"id": "3b10d42a-c29a-4a1f-ad71-9af98c4cd1b4",
+			"key": "loginUrl",
+			"value": "https://capstone-app.auth0.com/authorize?audience=auth&response_type=token&client_id=tqFImTSXfAfSu1mNq9kqnUuhGrHKs1lr&redirect_uri=http://localhost:8000/home",
+			"type": "string"
+		},
+		{
+			"id": "450021ff-becc-42e8-8b47-8d37ff4aac9d",
+			"key": "remote",
+			"value": "https://capstone-app-backend.herokuapp.com/api",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

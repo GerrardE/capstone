@@ -14,7 +14,7 @@ I recommend working within a virtual environment whenever using Python for proje
 
 #### PIP Dependencies
 
-Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
+Once you have your virtual environment setup and running, install dependencies by naviging to the root directory and running:
 
 ```bash
 pip install -r requirements.txt
@@ -26,20 +26,27 @@ This will install all of the required packages we selected within the `requireme
 
 - [Flask](http://flask.pocoo.org/) is a lightweight backend microservices framework. Flask is required to handle requests and responses.
 
-- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the lightweight sqlite database. Since we want you to focus on auth, we handle the heavy lift for you in `./src/database/models.py`. We recommend skimming this code first so you know how to interface with the Drink model.
-
 - [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
+
+## Database Setup
+
+Create a database `capstone` and `capstone_test` for development and test respectively.
+With Postgres running, restore a database for both using the capstone.psql file provided. From the root folder in terminal run:
+
+```bash
+psql capstone < capstone.psql
+```
 
 ## Running the server
 
-From within the `./src` directory first ensure you are working using your created virtual environment.
+From within the root directory first ensure you are working using your created virtual environment.
 
 Each time you open a new terminal session, run:
 
 ```bash
 export FLASK_APP=app.py
 export FLASK_ENV=development
-flask run --reload;
+flask run --reload
 ```
 
 To run the server, execute:
@@ -50,4 +57,27 @@ flask run --reload
 
 The `--reload` flag will detect file changes and restart the server automatically.
 
-Test the endpoints with [Postman](https://getpostman.com) by importing the postman collection `./backend/capstone.json`
+## Testing
+
+Run tests with the `python app_test.py` command
+
+You can also test the endpoints with [Postman](https://getpostman.com) by importing the postman collection `capstone.postman_collection.json`. Each folder in the collection represents the various roles. Some variables have been defined for the collection like so;
+
+- `{{url}}` variable is the localhost url
+- `{{remote}}` variable is the link to the live application at [capstone-app-backend](https://capstone-app-backend.herokuapp.com/api)
+
+## Resources
+- Documentation can be found [here](https://documenter.getpostman.com/view/7418457/SzKQwzQQ)
+- Generate access tokens using this [url](https://capstone-app.auth0.com/authorize?audience=auth&response_type=token&client_id=tqFImTSXfAfSu1mNq9kqnUuhGrHKs1lr&redirect_uri=http://localhost:8000/home) and the account details provided below
+
+- There are 3 accounts set up already for each personnel;
+
+```bash
+assistant@gmail.com
+director@gmail.com
+producer@gmail.com
+```
+
+```bash
+use 'capstone_2020' as password for all accounts
+```
