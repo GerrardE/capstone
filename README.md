@@ -1,5 +1,8 @@
 # Capstone Backend
 
+## Motivation
+Capstone is a project that models a company that is responsible for creating movies, managing and assigning actors to those movies. I am an Executive Producer within the company and I am creating a system to simplify and streamline my process.
+
 ## Getting Started
 
 ### Installing Dependencies
